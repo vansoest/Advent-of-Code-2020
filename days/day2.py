@@ -31,4 +31,4 @@ def run(real_input):
 
     part1_result = len([a for a in part1 if a is True])
 
-    print(part1_result)
+    return part1, part2

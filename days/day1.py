@@ -14,4 +14,4 @@ def run(real_input):
         a * b * c for a in input for b in input for c in input if a + b + c == target
     )
 
-    cprint(f"Part1: {part1}\nPart2: {part2}", "white")
+    return part1, part2

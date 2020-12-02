@@ -29,7 +29,9 @@ def main():
         module.input_type if hasattr(module, "input_type") else InputType.STRING
     )
     input_content = load_input(f"days/day{day}.txt", input_type)
-    module.run(real_input=input_content)
+    results = module.run(real_input=input_content)
+    for index, result in enumerate(results):
+        cprint(f"Part{index+1}: {result}", "white", attrs=["bold"])
 
     return 0
 
