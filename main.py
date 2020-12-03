@@ -5,7 +5,7 @@ Main module
 
 """
 from sys import exit
-from termcolor import cprint
+from termcolor import cprint, colored
 from argparse import ArgumentParser
 from utils.input import load_input
 from utils.input import Type as InputType
@@ -30,9 +30,13 @@ def main():
     )
     input_content = load_input(f"days/day{day}.txt", input_type)
     results = module.run(real_input=input_content)
-    for index, result in enumerate(results):
-        cprint(f"Part{index+1}: {result}", "white", attrs=["bold"])
-
+    if results:
+        print("")
+        for index, result in enumerate(results):
+            print(
+                colored(f"Part{index+1}:\t", "white"),
+                colored(result, "yellow", attrs=["bold"]),
+            )
     return 0
 
 
