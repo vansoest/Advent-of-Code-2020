@@ -24,7 +24,7 @@ def valid(min: int, max: int, letter: str, value: str):
 def valid2(a: int, b: int, letter: str, value: str):
     x = letter == value[a - 1]
     y = letter == value[b - 1]
-    return (x or y) and not (x and y)
+    return x ^ y
 
 
 def calc(method: "function", input_data: list):
