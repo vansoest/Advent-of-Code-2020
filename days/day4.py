@@ -42,7 +42,6 @@ def validate_field(key: str, value: str):
             return False
         decimal = int(value[0:-2])
         unit = value[-2:]
-        print(decimal, unit)
         if unit == "cm" and decimal >= 150 and decimal <= 193:
             return True
         elif unit == "in" and decimal >= 59 and decimal <= 76:
