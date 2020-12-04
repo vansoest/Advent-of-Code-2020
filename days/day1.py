@@ -5,7 +5,7 @@ input_type = InputType.INT
 example_input = [1721, 979, 366, 299, 675, 1, 979, 366, 299, 675, 1456]
 
 
-def run(real_input):
+def run(real_input: list, verbose: bool):
     input = real_input
     target = 2020
 

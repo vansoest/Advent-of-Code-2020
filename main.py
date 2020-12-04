@@ -16,7 +16,14 @@ def main():
     parser.add_argument(
         "--day", help="executes a specific day", type=int, required=True
     )
+    parser.add_argument(
+        "--verbose",
+        help="shows extra content",
+        action="store_true",
+        required=False,
+    )
     day = parser.parse_args().day
+    verbose = parser.parse_args().verbose
     cprint(f"Executing day{day}", "white", "on_grey", attrs=["bold"])
 
     try:
@@ -29,7 +36,7 @@ def main():
         module.input_type if hasattr(module, "input_type") else InputType.STRING
     )
     input_content = load_input(f"days/day{day}.txt", input_type)
-    results = module.run(real_input=input_content)
+    results = module.run(real_input=input_content, verbose=verbose)
     if results:
         print("")
         for index, result in enumerate(results):

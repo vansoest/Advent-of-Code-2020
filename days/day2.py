@@ -35,7 +35,7 @@ def calc(method: "function", input_data: list):
     ]
 
 
-def run(real_input: list):
+def run(real_input: list, verbose: bool):
     input = real_input
 
     part1 = len([a for a in calc(valid, input) if a is True])
