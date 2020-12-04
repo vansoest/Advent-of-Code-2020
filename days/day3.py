@@ -5,19 +5,6 @@ from termcolor import cprint, colored
 from utils.input import Type as InputType
 
 input_type = InputType.LIST
-example_input = [
-    list("..##......."),
-    list("#...#...#.."),
-    list(".#....#..#."),
-    list("..#.#...#.#"),
-    list(".#...##..#."),
-    list("..#.##....."),
-    list(".#.#.#....#"),
-    list(".#........#"),
-    list("#.##...#..."),
-    list("#...##....#"),
-    list(".#..#...#.#"),
-]
 
 
 def formatter(input: str, tile_len: str = 11):
@@ -41,8 +28,7 @@ def formatter(input: str, tile_len: str = 11):
     return output
 
 
-def run(real_input: list, verbose: bool):
-    input = real_input
+def run(input: list, verbose: bool):
     tile = dict()
     tile["width"] = len(input[0])
     tile["height"] = len(input)

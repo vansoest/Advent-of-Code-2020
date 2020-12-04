@@ -4,7 +4,6 @@ from termcolor import cprint
 from utils.input import Type as InputType
 
 input_type = InputType.STRING
-example_input = ["1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"]
 
 
 def grouped(iterable: list, n: int):
@@ -35,9 +34,7 @@ def calc(method: "function", input_data: list):
     ]
 
 
-def run(real_input: list, verbose: bool):
-    input = real_input
-
+def run(input: list, verbose: bool):
     part1 = len([a for a in calc(valid, input) if a is True])
     part2 = len([a for a in calc(valid2, input) if a is True])
 
