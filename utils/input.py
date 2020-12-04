@@ -5,6 +5,7 @@ from termcolor import cprint
 class Type(Enum):
     STRING = 1
     INT = 2
+    LIST = 3
 
 
 def load_input(file_path, input_type):
@@ -15,6 +16,8 @@ def load_input(file_path, input_type):
             results = lines
         elif input_type == Type.INT:
             results = list(map(int, lines))
+        elif input_type == Type.LIST:
+            results = list(map(list,lines))
         else:
             results = lines
 
