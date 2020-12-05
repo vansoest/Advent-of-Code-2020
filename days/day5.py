@@ -33,7 +33,7 @@ def run(input: list, verbose: bool) -> tuple:
         seat_id = row * 8 + column
         results.append(seat_id)
 
+    part1 = max(results)
     part2 = reduce(lambda a, b: a if a != (b - 1) else b, sorted(results)) + 1
 
-    part1 = max(results)
     return part1, part2
