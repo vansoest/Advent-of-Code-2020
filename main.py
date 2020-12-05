@@ -5,6 +5,7 @@ Main module
 
 """
 from sys import exit
+from re import findall
 from termcolor import cprint, colored
 from argparse import ArgumentParser
 from utils.input import load_input
@@ -14,7 +15,7 @@ from utils.input import Type as InputType
 def main():
     parser = ArgumentParser()
     parser.add_argument(
-        "--day", help="executes a specific day", type=int, required=True
+        "--day", help="executes a specific day", type=str, required=True
     )
     parser.add_argument(
         "--example",
@@ -28,16 +29,22 @@ def main():
         action="store_true",
         required=False,
     )
-    day = parser.parse_args().day
-    example = parser.parse_args().example
-    verbose = parser.parse_args().verbose
+    args = parser.parse_args()
+    example = args.example
+    verbose = args.verbose
+    try:
+        day = findall(r"\d+", args.day)[0]
+    except IndexError:
+        cprint(f"Failed to import day!", "red")
+        exit(1)
+
     cprint(f"Executing day{day}", "white", "on_grey", attrs=["bold"])
 
     try:
         module = __import__(f"days.day{day}", fromlist=["days"])
     except ImportError:
-        cprint(f"Failed to import day{day}", "red")
-        exit()
+        cprint(f"Failed to import day{day}!", "red")
+        exit(1)
 
     input_type = (
         module.input_type if hasattr(module, "input_type") else InputType.STRING
