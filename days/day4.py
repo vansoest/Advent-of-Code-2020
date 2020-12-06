@@ -1,28 +1,17 @@
-from re import findall, match
-from copy import deepcopy
-from functools import reduce
-from termcolor import cprint, colored
 from utils.input import Type as InputType
 
 input_type = InputType.STRING
 
 
-def parse_passports(input_data):
-    result = list()
+def parse_passports(generator):
     results = list()
-
-    def add():
-        results.append(result.copy())
-        result.clear()
-
-    for a in input_data:
-        if a == "":
-            add()
+    for line in generator:
+        if line == "":
+            yield (results)
+            results = []
         else:
-            result.append(a)
-    add()
-
-    return results
+            results.append(line)
+    yield (results)
 
 
 def validate_field(key: str, value: str):
@@ -92,7 +81,8 @@ def run(input: list, verbose: bool):
         "pid",
     ]
 
-    passports = parse_passports(input)
+    gen = (line for line in input)
+    passports = [passport for passport in parse_passports(gen)]
     passports_validity_part1 = worker(passports, fields, False, verbose)
     passports_validity_part2 = worker(passports, fields, True, verbose)
 
