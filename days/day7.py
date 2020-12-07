@@ -18,17 +18,18 @@ def parser(input_data: str) -> dict:
     return results
 
 
+def has(bags, search="shiny gold") -> bool:
+    for number, name in bags:
+        if name == search and int(number) >= 1:
+            return True
+    return False
+
+
 def calc(bags: list, rules: dict, nested: bool = False) -> int:
     running = True
     queue = list()
     upcoming_bags = bags
     counter = 0
-
-    def has(bags, search="shiny gold") -> bool:
-        for number, name in bags:
-            if name == search and int(number) >= 1:
-                return True
-        return False
 
     while running:
         if has(upcoming_bags):
