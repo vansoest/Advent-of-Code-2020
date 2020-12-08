@@ -28,16 +28,16 @@ def loop(input_data: list, verbose: bool, auto_repair: bool = False) -> int:
             input = input_data.copy()
 
             # Repair
-            brute_argument = input[repair_line].split(" ")[0]
-            if verbose and brute_argument in ["jmp", "nop"]:
+            repair_argument = input[repair_line].split(" ")[0]
+            if verbose and repair_argument in ["jmp", "nop"]:
                 cprint(
                     f"Line to repair {repair_line}: '{input[repair_line]}' & reset!",
                     "yellow",
                 )
-            if brute_argument == "jmp":
+            if repair_argument == "jmp":
                 input[repair_line] = input[repair_line].replace("jmp", "nop")
                 repair_line += 1
-            elif brute_argument == "nop":
+            elif repair_argument == "nop":
                 input[repair_line] = input[repair_line].replace("nop", "jmp")
                 repair_line += 1
             else:
