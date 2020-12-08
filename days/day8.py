@@ -7,7 +7,6 @@ input_type = InputType.STRING
 
 
 def loop(input_data: list, verbose: bool, auto_repair: bool = False) -> int:
-    input = list()
     input = input_data
     running = True
     current_line, memory, offset, counter = 0, 0, 1, 0
