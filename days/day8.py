@@ -12,7 +12,7 @@ def loop(input_data: list, verbose: bool, auto_repair: bool = False) -> int:
     current_line, memory, offset, counter = 0, 0, 1, 0
     upcoming = input[current_line]
     executed = list()
-    brute_line = 0
+    repair_line = 0
 
     while running:
         if current_line in executed:
@@ -20,19 +20,30 @@ def loop(input_data: list, verbose: bool, auto_repair: bool = False) -> int:
                 return memory
 
             # Reset
-            input = input_data.copy()
-            input[brute_line] = input[brute_line].replace("jmp", "nop")
-            if verbose:
-                cprint(
-                    f"Repaired line {brute_line}: {input[brute_line]} & reset!",
-                    "yellow",
-                )
             current_line = 0
             memory = 0
             counter = 0
             executed = list()
             upcoming = input[0]
-            brute_line += 1
+            input = input_data.copy()
+
+            # Repair
+            brute_argument = input[repair_line].split(" ")[0]
+            if verbose and brute_argument in ["jmp", "nop"]:
+                cprint(
+                    f"Line to repair {repair_line}: '{input[repair_line]}' & reset!",
+                    "yellow",
+                )
+            if brute_argument == "jmp":
+                input[repair_line] = input[repair_line].replace("jmp", "nop")
+                repair_line += 1
+            elif brute_argument == "nop":
+                input[repair_line] = input[repair_line].replace("nop", "jmp")
+                repair_line += 1
+            else:
+                while input[repair_line].split(" ")[0] == "acc":
+                    repair_line += 1
+
         else:
             executed.append(current_line)
 
