@@ -34,7 +34,7 @@ def calc_part2(input: list) -> int:
             return 0
         return paths_to(input, n - 1) + paths_to(input, n - 2) + paths_to(input, n - 3)
 
-    def paths_to_fast(input: list, cached: list, n: int) -> int:
+    def paths_to_fast(input: list, cached: dict, n: int) -> int:
         if n < 0:
             return 0
         if n == 0:
